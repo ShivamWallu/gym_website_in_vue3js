@@ -1,50 +1,53 @@
 <template>
-    <div class="home">
-      <h1>Login page</h1>
-      <div id="form-ui">
-        <form @submit.prevent="handleSignup" id="form">
-          <div id="form-body">
-            <div id="welcome-lines">
-              <div id="welcome-line-1">Register</div>
-              <div id="welcome-line-2">Start Your Free Trial Now!💪🏼</div>
+  <div class="home">
+    <h1>Login page</h1>
+    <div id="form-ui">
+      <form @submit.prevent="handleSignup" id="form">
+        <div id="form-body">
+          <div id="welcome-lines">
+            <div id="welcome-line-1">Register</div>
+            <div id="welcome-line-2">Start Your Free Trial Now!💪🏼</div>
+          </div>
+          <div id="input-area">
+            <div class="form-inp">
+              <input v-model="name" placeholder="Name" id="name" type="text" />
             </div>
-            <div id="input-area">
-              <div class="form-inp">
-                <input v-model="name" placeholder="Name" id="name" type="text" />
-              </div>
-              <div class="form-inp">
-                <input v-model="email" placeholder="Email Address" id="email" type="text" />
-              </div>
-              <br />
-              <div class="form-inp">
-                <input v-model="password" placeholder="Password" id="password" type="password" />
-              </div>
-            </div>
-            <div id="submit-button-cvr">
-              <button id="submit" type="submit">
-                Register
-              </button>
-            </div>
-            <br /><br />
-            <div id="forgot-pass">
-              <a id="forgotPasswordLink" @click="deleteGymDataCookie">Forget Password</a>
+            <div class="form-inp">
+              <input v-model="email" placeholder="Email Address" id="email" type="text" />
             </div>
             <br />
+            <div class="form-inp">
+              <input v-model="password" placeholder="Password" id="password" type="password" />
+            </div>
           </div>
-        </form>
-      </div>
-      <div id="toaster-container"></div><br><br><br><br><br>
+          <div id="submit-button-cvr">
+            <button id="submit" type="submit">
+              Register
+            </button>
+          </div>
+          <br /><br />
+          <div id="forgot-pass">
+            <a id="forgotPasswordLink" @click="deleteGymDataCookie">Forget Password</a>
+          </div>
+          <br />
+        </div>
+      </form>
     </div>
-  </template>
-  
-  <script>
+    <div id="toaster-container"></div>
+    <br /><br /><br /><br /><br />
+  </div>
+</template>
+
+<script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      showingToaster: false // Track if a toaster is currently showing
     };
   },
   mounted() {
@@ -87,22 +90,30 @@ export default {
       }
     },
     validateInput(name, email, password, emailPattern) {
-      if (name === "" || email === "" || password === "") {
-        this.showCustomWarning("Fill all fields.");
-        return false;
+      let isValid = true;
+
+      if (name === "") {
+        this.showCustomWarning("Fill the Name field.");
+        isValid = false;
       }
 
-      if (!email.match(emailPattern)) {
+      if (email === "") {
+        this.showCustomWarning("Fill the Email field.");
+        isValid = false;
+      } else if (!email.match(emailPattern)) {
         this.showCustomWarning("Invalid email.");
-        return false;
+        isValid = false;
       }
 
-      if (password.length < 8) {
-        this.showCustomWarning("Password must be 8+ chars.");
-        return false;
+      if (password === "") {
+        this.showCustomWarning("Fill the Password field.");
+        isValid = false;
+      } else if (password.length < 8) {
+        this.showCustomWarning("Password must be 8+ characters.");
+        isValid = false;
       }
 
-      return true;
+      return isValid;
     },
     storeGymData(GymData) {
       const expirationDate = new Date();
@@ -136,7 +147,9 @@ export default {
       this.showCustomToaster(message, 'success', 'fa-check-circle');
     },
     showCustomWarning(message) {
-      this.showCustomToaster(message, 'warning', 'fa-exclamation-circle');
+      if (!this.showingToaster) { // Show only if no toaster is currently shown
+        this.showCustomToaster(message, 'warning', 'fa-exclamation-circle');
+      }
     },
     showCustomToaster(message, type, icon) {
       const toasterContainer = document.getElementById('toaster-container');
@@ -145,7 +158,10 @@ export default {
       toaster.classList.add('toaster', type);
       toaster.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
 
+      toasterContainer.innerHTML = ''; // Clear previous toasters
       toasterContainer.appendChild(toaster);
+
+      this.showingToaster = true;
 
       setTimeout(() => {
         toaster.classList.add('show');
@@ -155,6 +171,7 @@ export default {
         toaster.classList.remove('show');
         toaster.addEventListener('transitionend', () => {
           toasterContainer.removeChild(toaster);
+          this.showingToaster = false; // Reset showingToaster flag
         });
       }, 3000);
     }
