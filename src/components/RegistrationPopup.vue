@@ -180,12 +180,12 @@
   }
   .popup .close {
     position: absolute;
-    top: -6px; /* Adjust this value as needed */
-    right: 10px; /* Adjust this value as needed */
+    top: -6px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
     color: #ffffff;
     font-size: 30px;
     cursor: pointer;
-    z-index: 10; /* Ensure the close button is above other elements */
+    z-index: 60; /* Ensure the close button is above other elements */
   }
   .popup #form-ui {
     display: flex;
@@ -203,8 +203,8 @@
     outline: 1px solid #2b9962;
     border-radius: 10px;
     position: absolute;
-    top: 376px;
-    left: 179px;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%);
   }
   .popup #welcome-lines {
@@ -314,21 +314,11 @@
       z-index: 60; /* Ensure the close button is above other elements */
     }
     .popup #form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       width: 380px;
       padding: 27px;
-      background-color: #161616;
-      box-shadow: 0px 15px 60px #00ff7f;
-      outline: 1px solid #2b9962;
-      border-radius: 10px;
-      position: absolute;
-      top: 476px;
-      left: 205px;
-      transform: translate(-50%, -50%);
     }
   }
 </style>
+
 
   
