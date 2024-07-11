@@ -170,7 +170,7 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 1;
+    z-index: 30;
     left: 0;
     top: 0;
     width: 100%;
@@ -180,11 +180,12 @@
   }
   .popup .close {
     position: absolute;
-    top: -7px;
-    right: 5px;
+    top: -6px; /* Adjust this value as needed */
+    right: 10px; /* Adjust this value as needed */
     color: #ffffff;
     font-size: 30px;
     cursor: pointer;
+    z-index: 10; /* Ensure the close button is above other elements */
   }
   .popup #form-ui {
     display: flex;
@@ -192,20 +193,20 @@
     align-items: center;
   }
   .popup #form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 325px;
-  padding: 14px;
-  background-color: #161616;
-  box-shadow: 0px 15px 60px #00ff7f;
-  outline: 1px solid #2b9962;
-  border-radius: 10px;
-  position: absolute;
-  top: 376px;
-  left: 179px;
-  transform: translate(-50%, -50%);
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 325px;
+    padding: 14px;
+    background-color: #161616;
+    box-shadow: 0px 15px 60px #00ff7f;
+    outline: 1px solid #2b9962;
+    border-radius: 10px;
+    position: absolute;
+    top: 376px;
+    left: 179px;
+    transform: translate(-50%, -50%);
+  }
   .popup #welcome-lines {
     text-align: center;
     line-height: 1;
@@ -278,54 +279,56 @@
     color: #868686;
   }
   .popup #bar {
-  position: absolute;
-  left: 50%;
-  bottom: -50px;
-  width: 28px;
-  height: 8px;
-  margin-left: -33px;
-  background-color: #00ff7f;
-  border-radius: 10px;
-}
-.popup #bar:before,
-.popup #bar:after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: #ececec;
-  border-radius: 50%;
-}
-.popup #bar:before {
-  right: -20px;
-}
-.popup #bar:after {
-  right: -38px;
-}
-@media (min-width: 380px) {
-  .popup .close {
-    top: 130px;
-    right: 869px;
-    color: #ffffff;
-    font-size: 30px;
-    cursor: pointer;
-    margin-left: 340px;
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    width: 28px;
+    height: 8px;
+    margin-left: -33px;
+    background-color: #00ff7f;
+    border-radius: 10px;
   }
-.popup #form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 380px;
-  padding: 27px;
-  background-color: #161616;
-  box-shadow: 0px 15px 60px #00ff7f;
-  outline: 1px solid #2b9962;
-  border-radius: 10px;
-  position: absolute;
-  top: 476px;
-  left: 205px;
-  transform: translate(-50%, -50%);
-}
-}
+  .popup #bar:before,
+  .popup #bar:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ececec;
+    border-radius: 50%;
+  }
+  .popup #bar:before {
+    right: -20px;
+  }
+  .popup #bar:after {
+    right: -38px;
+  }
+  
+  @media (min-width: 380px) {
+    .popup .close {
+      top: -6px; /* Adjust as needed */
+      right: 10px; /* Adjust as needed */
+      color: #ffffff;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 60; /* Ensure the close button is above other elements */
+    }
+    .popup #form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 380px;
+      padding: 27px;
+      background-color: #161616;
+      box-shadow: 0px 15px 60px #00ff7f;
+      outline: 1px solid #2b9962;
+      border-radius: 10px;
+      position: absolute;
+      top: 476px;
+      left: 205px;
+      transform: translate(-50%, -50%);
+    }
+  }
 </style>
+
   
