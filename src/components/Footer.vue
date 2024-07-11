@@ -610,6 +610,6 @@ p {
   margin: 0;
 }
 ul li strong {
-  color: #ffcc00; /* Yellow color */
+  color: #09c373;
 }
 </style>
