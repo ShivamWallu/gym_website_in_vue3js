@@ -88,17 +88,17 @@ export default {
     },
     validateInput(name, email, password, emailPattern) {
       if (name === "" || email === "" || password === "") {
-        this.showCustomWarning("Please fill in all the required fields.");
+        this.showCustomWarning("Fill all fields.");
         return false;
       }
 
       if (!email.match(emailPattern)) {
-        this.showCustomWarning("Please enter a valid email address.");
+        this.showCustomWarning("Invalid email.");
         return false;
       }
 
       if (password.length < 8) {
-        this.showCustomWarning("Password must be 8+ characters long.");
+        this.showCustomWarning("Password must be 8+ chars.");
         return false;
       }
 
