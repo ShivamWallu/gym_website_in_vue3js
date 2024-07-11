@@ -27,7 +27,7 @@
           </div>
           <br /><br />
           <div id="forgot-pass">
-            <a id="forgotPasswordLink" @click="deleteGymDataCookie">Forget Password</a>
+            <a id="forgotPasswordLink" @click="deleteGymDataCookie">Forget Password ?</a>
           </div>
           <br />
         </div>
