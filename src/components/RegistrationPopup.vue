@@ -25,7 +25,7 @@
             </div>
             <br /><br />
             <div id="forgot-pass">
-              <a id="forgotPasswordLink">Forget Password</a>
+              <a id="forgotPasswordLink">Forget Password ?</a>
             </div>
           </div>
         </form>
