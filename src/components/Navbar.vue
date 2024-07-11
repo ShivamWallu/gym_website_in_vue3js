@@ -132,10 +132,12 @@ export default {
   padding: 0px 22px;
 }
 .left-image {
-  width: 44px;
-  height: auto;
-  margin-left: -23px;
-  margin-right: 40px;
+    width: 56px;
+    height: auto;
+    margin-left: -23px;
+    margin-right: 30px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .name {
   width: 100%;
