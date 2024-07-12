@@ -25,7 +25,7 @@
             </div>
             <br /><br />
             <div id="forgot-pass">
-              <a id="forgotPasswordLink">Forget Password ?</a>
+              <a id="forgotPasswordLink">Forget Password</a>
             </div>
           </div>
         </form>
@@ -139,25 +139,28 @@
         this.showCustomToaster(message, 'warning', 'fa-exclamation-circle');
       },
       showCustomToaster(message, type, icon) {
-        const toasterContainer = document.getElementById('toaster-container');
-        // Create toaster element
-        const toaster = document.createElement('div'); 
-        toaster.classList.add('toaster', type);
-        toaster.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
-        // Append toaster to container
-        toasterContainer.appendChild(toaster);
-        // Show the toaster
-        setTimeout(() => {
-          toaster.classList.add('show');
-        }, 10); // Timeout to trigger CSS transition
-        // Hide the toaster after 3 seconds
-        setTimeout(() => {
-          toaster.classList.remove('show');
-          // Remove the toaster from DOM after transition
-          toaster.addEventListener('transitionend', () => {
-            toasterContainer.removeChild(toaster);
-          });
-        }, 3000);
+      const toasterContainer = document.getElementById('toaster-container');
+
+      const toaster = document.createElement('div');
+      toaster.classList.add('toaster', type);
+      toaster.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+
+      toasterContainer.innerHTML = ''; // Clear previous toasters
+      toasterContainer.appendChild(toaster);
+
+      this.showingToaster = true;
+
+      setTimeout(() => {
+        toaster.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        toaster.classList.remove('show');
+        toaster.addEventListener('transitionend', () => {
+          toasterContainer.removeChild(toaster);
+          this.showingToaster = false; // Reset showingToaster flag
+        });
+      }, 3000);
       }
     }
   };
@@ -319,6 +322,5 @@
     }
   }
 </style>
-
 
   
