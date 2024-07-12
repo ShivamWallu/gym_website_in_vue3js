@@ -610,6 +610,6 @@ p {
   margin: 0;
 }
 ul li strong {
-  color: #09c373;
+  color: rgb(80, 200, 120);
 }
 </style>
